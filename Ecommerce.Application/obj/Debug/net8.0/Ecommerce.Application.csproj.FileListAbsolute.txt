@@ -1,0 +1,17 @@
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\bin\Debug\net8.0\Ecommerce.Application.deps.json
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\bin\Debug\net8.0\Ecommerce.Application.dll
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\bin\Debug\net8.0\Ecommerce.Application.pdb
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.AssemblyInfoInputs.cache
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.AssemblyInfo.cs
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.csproj.CoreCompileInputs.cache
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.dll
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\refint\Ecommerce.Application.dll
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.pdb
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\ref\Ecommerce.Application.dll
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\bin\Debug\net8.0\Ecommerce.Core.dll
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\bin\Debug\net8.0\Ecommerce.Infrastructure.dll
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\bin\Debug\net8.0\Ecommerce.Core.pdb
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\bin\Debug\net8.0\Ecommerce.Infrastructure.pdb
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.csproj.AssemblyReference.cache
+D:\GecBnv\PersonalWork\Github\EcommerceApp\Ecommerce.Application\obj\Debug\net8.0\Ecommerce.Application.csproj.CopyComplete
