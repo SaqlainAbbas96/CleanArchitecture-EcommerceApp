@@ -1,4 +1,5 @@
-﻿using Ecommerce.Core.Entities;
+﻿using Ecommerce.Core.DataModels;
+using Ecommerce.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace Ecommerce.Core.Interfaces
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetProducts();
+        Task<IQueryable<ProductDataModel>> GetProducts();
+        Task<string> AddProduct(Product model);
+        Task<Product> GetProductById(int id);
+        Task<string> UpdateProduct(Product model);
+        Task<string> DeleteProduct(int id);
     }
 }

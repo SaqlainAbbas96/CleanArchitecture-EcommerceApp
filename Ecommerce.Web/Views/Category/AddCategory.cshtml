@@ -1,0 +1,56 @@
+﻿@model Ecommerce.Application.DTOs.AddCategoryDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <p class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </p>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Add Category</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Category Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.categoryName, new { htmlAttributes = new { @class = "form-control", style="width:25%" } })
+                @Html.ValidationMessageFor(model => model.categoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <div class="col-md-10">
+                <input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." id="isActive" name="isActive" value="true">
+                <input name="isActive" type="hidden" value="false">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

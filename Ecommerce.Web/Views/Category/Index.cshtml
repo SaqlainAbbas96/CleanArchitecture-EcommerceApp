@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Ecommerce.Application.DTOs.CategoryViewModelDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Category Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.categoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateCategory", new { id = item.categoryId }) |
+                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.categoryId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

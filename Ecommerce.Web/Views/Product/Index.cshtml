@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Ecommerce.Application.DTOs.ProductViewModelDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Sub Category Name
+            </th>
+            <th>
+                Supplier Name
+            </th>
+            <th>
+                quantity
+            </th>
+            <th>
+                Listing Price
+            </th>
+            <th>
+                Retail Price
+            <th>
+                Size
+            </th>
+            <th>
+                Discount
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Alt Text
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subCategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.supplierName)
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.listingPrice)
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.retailPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.discount)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.imageUrl)" alt="Not found" width="100" height="100" />
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.altText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.productId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

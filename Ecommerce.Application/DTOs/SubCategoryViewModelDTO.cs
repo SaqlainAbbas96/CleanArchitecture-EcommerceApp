@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Core.Entities
+namespace Ecommerce.Application.DTOs
 {
-    public class Category
+    public class SubCategoryViewModelDTO
     {
-        [Key]
+        public int subCategoryId { get; set; }
+        public string? subCategoryName { get; set; }
         public int categoryId { get; set; }
-        public string? categoryName { get; set; }
+        public string categoryName { get; set; }
         public string? description { get; set; }
         public bool isActive { get; set; }
     }

@@ -1,0 +1,65 @@
+﻿@model Ecommerce.Application.DTOs.UpdateSubCategoryDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <p class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </p>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Update Sub Category</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.subCategoryId)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Category</label>
+            <div class="col-md-4">
+                @Html.DropDownList("categoryId", ViewBag.CategoryDropdown as SelectList, "Select a Category",
+                         htmlAttributes: new { @class = "form-control", style = "width:270px; color=black;" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Sub Category Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.subCategoryName, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.subCategoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <div class="col-md-10">
+                <input type="checkbox" id="isActive" name="isActive" value="true" @(Model.isActive ? "checked" : "")>
+                <input name="isActive" type="hidden" value="false">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

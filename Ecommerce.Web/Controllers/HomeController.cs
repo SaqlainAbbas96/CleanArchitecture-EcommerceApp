@@ -1,4 +1,5 @@
 using Ecommerce.Application.Services;
+using Ecommerce.Core.Entities;
 using Ecommerce.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -18,8 +19,7 @@ namespace Ecommerce.Web.Controllers
 
         public IActionResult Index()
         {
-            var products = _productService.GetProducts();
-            return View(products);
+            return View();
         }
 
         public IActionResult Privacy()
@@ -32,5 +32,12 @@ namespace Ecommerce.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> Products()
+        {
+            var products = await _productService.GetProducts();
+            return View(products);
+        }
+
     }
 }

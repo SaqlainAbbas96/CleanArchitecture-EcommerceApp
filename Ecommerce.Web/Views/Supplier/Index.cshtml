@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Ecommerce.Application.DTOs.SupplierViewModelDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Supplier Name
+            </th>
+            <th>
+                Company Name
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.supplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.companyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateSupplier", new { id = item.supplierId }) |
+                    @Html.ActionLink("Delete", "DeleteSupplier", new { id = item.supplierId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

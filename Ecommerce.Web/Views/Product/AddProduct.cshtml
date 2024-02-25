@@ -1,0 +1,122 @@
+﻿@model Ecommerce.Application.DTOs.AddProductDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <p class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </p>
+}
+
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Add Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Product Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.productName, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.productName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Sub Category</label>
+            <div class="col-md-4">
+                @Html.DropDownList("subCategoryId", ViewBag.SubCategoryDropdown as SelectList, "Select a Sub Category",
+                         htmlAttributes: new { @class = "form-control", style = "width:270px; color=black;" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Sub Category</label>
+            <div class="col-md-4">
+                @Html.DropDownList("supplierId", ViewBag.SupplierDropdown as SelectList, "Select a Supplier",
+                         htmlAttributes: new { @class = "form-control", style = "width:270px; color=black;" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Quantity</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Listing Price</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.listingPrice, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.listingPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Retail Price</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.retailPrice, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.retailPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Size</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.size, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.size, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Discount</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.discount, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.discount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Image</label>
+            <div class="col-md-10">
+                <input type="file" name="imageUrl" id="imageUrl" />
+                @Html.ValidationMessageFor(model => model.imageUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Alt Text</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.altText, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.altText, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", style = "width:25%" } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <div class="col-md-10">
+                <input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." id="isActive" name="isActive" value="true">
+                <input name="isActive" type="hidden" value="false">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

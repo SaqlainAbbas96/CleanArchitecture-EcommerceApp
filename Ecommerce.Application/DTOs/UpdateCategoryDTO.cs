@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Core.Entities
+namespace Ecommerce.Application.DTOs
 {
-    public class Category
+    public class UpdateCategoryDTO
     {
-        [Key]
         public int categoryId { get; set; }
         public string? categoryName { get; set; }
         public string? description { get; set; }
