@@ -1,5 +1,4 @@
 using Ecommerce.Application.Services;
-using Ecommerce.Core.Entities;
 using Ecommerce.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -10,18 +9,22 @@ namespace Ecommerce.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
-
-        public HomeController(ILogger<HomeController> logger, IProductService productService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public HomeController(ILogger<HomeController> logger, IProductService productService, IHttpContextAccessor httpContextAccessor)
         {
             _productService = productService;
             _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            var session = _httpContextAccessor.HttpContext.Session;
 
+            ViewBag.CartCounter = session.GetInt32("CartCounter");
+            var products = await _productService.GetProducts();
+            return View(products);
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -32,12 +35,5 @@ namespace Ecommerce.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public async Task<IActionResult> Products()
-        {
-            var products = await _productService.GetProducts();
-            return View(products);
-        }
-
     }
 }

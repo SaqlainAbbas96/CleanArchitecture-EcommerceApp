@@ -1,9 +1,7 @@
 ﻿using Ecommerce.Application.DTOs;
 using Ecommerce.Application.Services;
-using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using NuGet.Protocol.Core.Types;
 
 namespace Ecommerce.Web.Controllers
 {

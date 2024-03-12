@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Application.DTOs;
 using Ecommerce.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -52,12 +53,12 @@ namespace Ecommerce.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(AddProductDTO dto)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 var res = await _productService.AddProduct(dto);
                 if (res == "Successful")
                     return RedirectToAction("Index");
-            //}
+            }
             return View(dto);
         }
 

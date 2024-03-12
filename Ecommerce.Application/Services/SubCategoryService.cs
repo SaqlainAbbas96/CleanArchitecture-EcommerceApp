@@ -2,13 +2,6 @@
 using Ecommerce.Application.DTOs;
 using Ecommerce.Core.Entities;
 using Ecommerce.Core.Interfaces;
-using Ecommerce.Infrastructure.Repositories;
-using Humanizer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecommerce.Application.Services
 {

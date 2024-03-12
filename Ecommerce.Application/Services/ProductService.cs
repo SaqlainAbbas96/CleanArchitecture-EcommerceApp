@@ -1,14 +1,7 @@
 ﻿using AutoMapper;
 using Ecommerce.Application.DTOs;
-using Ecommerce.Application.Mappers;
 using Ecommerce.Core.Entities;
 using Ecommerce.Core.Interfaces;
-using Ecommerce.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecommerce.Application.Services
 {

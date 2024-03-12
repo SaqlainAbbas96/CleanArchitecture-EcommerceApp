@@ -1,0 +1,62 @@
+﻿@using Ecommerce.Application.DTOs
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <section class="py-5">
+        <h2 class="h5 text-uppercase mb-4">Shopping cart</h2>
+        <div class="row">
+
+            @if (ViewBag.userCart == null)
+            {
+                <div class="alert alert-danger">
+                    <strong>No product added to cart!</strong>
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="table-responsive mb-4">
+                        <table class="table">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="border-0" scope="col"> <strong class="text-small text">Cart Id</strong></th>
+                                    <th class="border-0" scope="col"> <strong class="text-small text">Product</strong></th>
+                                    <th class="border-0" scope="col"> <strong class="text-small text">Price</strong></th>
+                                    <th class="border-0" scope="col"> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (CartItem sessionItem in (List<CartItem>)ViewBag.userCart)
+                                {
+                                    <tr>
+                                        <td class="align-middle border-0" data-cart-id="@sessionItem.cartId">
+                                            @sessionItem.cartId
+                                        </td>
+                                        <th class="pl-0 border-0" scope="row">
+                                            <div class="media align-items-center">
+                                                <a class="reset-anchor d-block animsition-link" href="#"><img src="@Url.Content(sessionItem.imageUrl)" alt="..." width="70" /></a>
+                                                <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href="#">@sessionItem.productName</a></strong></div>
+                                            </div>
+                                        </th>
+                                        <td class="align-middle border-0">
+                                            <p class="mb-0 small" id="retailPrice">@sessionItem.retailPrice</p>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-light px-4 py-3">
+                        <div class="row align-items-center text-center">
+                            <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm" href="@Url.Action("Index", "Home")"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>

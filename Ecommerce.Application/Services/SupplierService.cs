@@ -2,7 +2,6 @@
 using Ecommerce.Application.DTOs;
 using Ecommerce.Core.Entities;
 using Ecommerce.Core.Interfaces;
-using Ecommerce.Infrastructure.Repositories;
 
 namespace Ecommerce.Application.Services
 {
@@ -49,6 +48,5 @@ namespace Ecommerce.Application.Services
             var res = await _supplierRepository.DeleteSupplier(id);
             return res;
         }
-
     }
 }
