@@ -109,9 +109,6 @@ namespace Ecommerce.Web.Controllers
                 return View(dto); // Return the view with the provided DTO to display error message
             }
         }
-
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _accountService.LogoutUser();

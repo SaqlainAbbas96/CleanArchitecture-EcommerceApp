@@ -1,11 +1,13 @@
 ﻿using Ecommerce.Application.DTOs;
 using Ecommerce.Application.Services;
+using Ecommerce.Web.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ecommerce.Web.Controllers
 {
+    [RoleAuthorization("Admin")]
     public class SubCategoryController : Controller
     {
         private readonly ISubCategoryService _subCategoryService;

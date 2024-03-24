@@ -1,10 +1,12 @@
 ﻿using Ecommerce.Application.DTOs;
 using Ecommerce.Application.Services;
+using Ecommerce.Web.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Web.Controllers
 {
+    [RoleAuthorization("Admin")]
     public class SupplierController : Controller
     {
         private readonly ISupplierService _supplierService;

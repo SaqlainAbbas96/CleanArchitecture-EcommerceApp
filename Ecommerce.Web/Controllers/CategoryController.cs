@@ -1,21 +1,28 @@
 ﻿using Ecommerce.Application.DTOs;
 using Ecommerce.Application.Services;
+using Ecommerce.Web.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Web.Controllers
 {
+    [RoleAuthorization("Admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
-        public CategoryController(ICategoryService categoryService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CategoryController(ICategoryService categoryService, IHttpContextAccessor httpContextAccessor)
         {
             _categoryService = categoryService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            var session = _httpContextAccessor.HttpContext.Session;
+
             var categories = await _categoryService.GetAllCategories();
             return View(categories);
         }
@@ -32,7 +39,7 @@ namespace Ecommerce.Web.Controllers
             if (ModelState.IsValid)
             {
                 var res = await _categoryService.AddCategory(dto);
-                if(res == "Successful")
+                if (res == "Successful")
                     return RedirectToAction("Index");
             }
             return View(dto);
@@ -46,7 +53,7 @@ namespace Ecommerce.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCategory(UpdateCategoryDTO dto) 
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryDTO dto)
         {
             if (ModelState.IsValid)
             {

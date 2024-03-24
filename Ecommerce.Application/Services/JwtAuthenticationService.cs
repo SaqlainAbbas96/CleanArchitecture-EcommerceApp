@@ -24,8 +24,8 @@ namespace Ecommerce.Application.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                new Claim(ClaimTypes.Name, username)
-                //new Claim(ClaimTypes.Role, userrole)
+                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Role, userrole)
             }),
 
                 Expires = DateTime.UtcNow.AddDays(1),

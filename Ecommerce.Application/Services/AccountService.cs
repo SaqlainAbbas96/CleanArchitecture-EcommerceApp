@@ -49,6 +49,7 @@ namespace Ecommerce.Application.Services
                     var res = _jwtAuthenticationService.GenerateToken(dto.email, userRole);
                     var session = _httpContextAccessor.HttpContext.Session;
                     session.SetString("Email", dto.email);
+                    session.SetString("Role", userRole);
                     return res;
                 }
                 else
@@ -60,7 +61,12 @@ namespace Ecommerce.Application.Services
 
         public async Task<string> LogoutUser()
         {
-            _httpContextAccessor.HttpContext.Session.Clear();
+            var session = _httpContextAccessor.HttpContext.Session;
+
+            // Clear session data related to authentication
+            session.Remove("Email");
+            session.Remove("Role");
+
             return "Logout Successfully";
         }
 
