@@ -8,7 +8,7 @@ using NuGet.Protocol.Core.Types;
 
 namespace Ecommerce.Web.Controllers
 {
-    //[RoleAuthorization("Admin")]
+    [RoleAuthorization("Admin")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
