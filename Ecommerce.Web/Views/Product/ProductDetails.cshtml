@@ -1,0 +1,68 @@
+﻿@model Ecommerce.Application.DTOs.ProductDetails
+
+
+@* <div class="row">
+    <div class="col-lg-6">
+        <img src="@Url.Content(@ViewBag.ProductDetail.productImage)" style="height: 300px;">
+    </div>
+
+    <div class="col-lg-6">
+        <h2 style="font-family:'Comic Sans MS'; color:black; font-weight:bold">@ViewBag.ProductDetail.productName</h2>
+        <h4>Colour: </h4>
+    </div>
+</div> *@
+
+<div class="row" style="margin-bottom: 10%;">
+    <div class="col-md-6">
+        <img src="@Url.Content(@Model.imageUrl)" alt="@Model.productName" style="max-width: 65%;
+    height: auto;" />
+    </div>
+    <div class="col-md-6">
+        <div>
+            <div style="margin-top: 3%;">
+                <h2>@Model.productName</h2>
+                <p>Price: $@Model.price</p>
+            </div>
+            <div style="margin-top: 3%;">
+                <h6 for="colour">Colour</h6>
+                <select id="colour" name="colour">
+                    @foreach (var color in Model.colour)
+                    {
+                        <option value="@color">@color</option>
+                    }
+                </select>
+            </div>
+            <div style="margin-top: 3%;">
+                <h6 for="size">Size</h6>
+                <select id="size" name="size">
+                    @foreach (var size in Model.size)
+                    {
+                        <option value="@size">@size</option>
+                    }
+                </select>
+            </div>
+            <!-- Add any additional details here -->
+            <div style="margin-top: 5%;">
+                @using (Html.BeginForm("AddToCart", "Cart", new { productId = @Model.productId }, FormMethod.Post))
+                {
+                    <button class="btn btn-sm btn-success" type="submit" value="save">Add to cart</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@if (@ViewBag.categoryWiseProduct != null)
+{
+    <div class="row">
+        @foreach (var prod in @ViewBag.categoryWiseProduct)
+        {
+            <div class="col-lg-3 col-sm-6">
+                <img class="img-fluid w-100" src="@Url.Content(@prod.imageUrl)" alt="..." style="height:250px;">
+                <div style="padding-top: 5%;">
+                    <h6 class="product-title">@prod.productName</h6>
+                    <h6 class="product-price">@prod.price</h6>
+                </div>
+            </div>
+        }
+    </div>
+} 

@@ -4,10 +4,11 @@ using Ecommerce.Web.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Protocol.Core.Types;
 
 namespace Ecommerce.Web.Controllers
 {
-    [RoleAuthorization("Admin")]
+    //[RoleAuthorization("Admin")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -105,6 +106,26 @@ namespace Ecommerce.Web.Controllers
         {
             var res = await _productService.DeleteProduct(id);
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> ProductDetails(int productId)
+        {
+            //ViewBag.ProductDetail
+
+            var productDetails = _productService.GetProductDetails(productId);
+
+            if (productDetails != null)
+            {
+                var res = await _productService.GetCategoryWiseProduct(productId);
+                if (res != null)
+                {
+                    ViewBag.categoryWiseProduct = res;
+                }
+                return View(productDetails);
+            }
+
+            //Temp
+            return View("Index", "Home");
         }
     }
 }

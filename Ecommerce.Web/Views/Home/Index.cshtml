@@ -160,8 +160,9 @@
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div id="product-1" class="single-product">
                             <div class="part-1">
-                                <img src="~/images/1705185344403.jpg" />
-                                @*<img src="@Url.Content(item.imageUrl)" alt="Not found" width="100" height="100" />*@
+                                <a href="@Url.Action("ProductDetails", "Product", new { productId = item.productId })">
+                                    <img src="@Url.Content(item.imageUrl)" alt="Not found" width="100%" />
+                                </a>
                                 <ul>
                                     <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
                                     <li><a href="#"><i class="fas fa-heart"></i></a></li>

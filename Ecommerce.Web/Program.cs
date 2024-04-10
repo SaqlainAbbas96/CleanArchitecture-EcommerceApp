@@ -4,7 +4,7 @@ using Ecommerce.Core.Interfaces;
 using Ecommerce.Infrastructure.Data;
 using Ecommerce.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-
+ 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +13,9 @@ JwtAuthenticationConfig.Configure(builder.Services, builder.Configuration["Setti
 builder.Services.AddAntiforgery();
 
 builder.Services.AddControllersWithViews();
+
+//builder.Host.UseSerilog((context, configuration) =>
+//configuration.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

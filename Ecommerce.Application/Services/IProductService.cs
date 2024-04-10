@@ -9,5 +9,8 @@ namespace Ecommerce.Application.Services
         Task<UpdateProductDTO> GetProductById(int id);
         Task<string> UpdateProduct(UpdateProductDTO dto);
         Task<string> DeleteProduct(int id);
+
+        ProductDetails GetProductDetails(int id);
+        Task<List<ProductDetails>> GetCategoryWiseProduct(int id);
     }
 }

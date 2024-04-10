@@ -1,4 +1,7 @@
-﻿namespace Ecommerce.Application.DTOs
+﻿using Ecommerce.Core.Entities;
+using System.Drawing;
+
+namespace Ecommerce.Application.DTOs
 {
     public record ProductViewModelDTO(
         int productId,
@@ -16,4 +19,14 @@
         string? altText,
         string? description,
         bool isActive);
+
+    public class ProductDetails
+    {
+        public int productId { get; set; }
+        public string? productName { get; set; }
+        public string? imageUrl { get; set; }
+        public List<string> colour { get; set; }
+        public List<string> size { get; set; }
+        public double price { get; set; }
+    }
 }

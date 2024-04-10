@@ -66,6 +66,7 @@ namespace Ecommerce.Application.Services
             // Clear session data related to authentication
             session.Remove("Email");
             session.Remove("Role");
+            session.Remove("CartCounter");
 
             return "Logout Successfully";
         }

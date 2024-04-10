@@ -123,7 +123,7 @@ namespace Ecommerce.Application.Services
             return product;
         }
 
- 
+
         public async Task<string> DeleteProduct(int id)
         {
             var res = await _productRepository.DeleteProduct(id);
@@ -133,6 +133,48 @@ namespace Ecommerce.Application.Services
         public async Task<string> UpdateProduct(UpdateProductDTO dto)
         {
             throw new NotImplementedException();
+        }
+
+        public ProductDetails GetProductDetails(int id)
+        {
+            var product = _productRepository.GetProductDetails(id);
+            var productDetails = new ProductDetails
+            {
+                productId = product.productId,
+                productName = product.productName,
+                imageUrl = product.imageUrl,
+                price = product.retailPrice,
+                colour = new List<string> { "Red", "Blue", "Yellow" },
+                size = new List<string> { "S", "M", "L", "XL", "XXL" }
+            };
+            return productDetails;
+        }
+
+        public async Task<List<ProductDetails>> GetCategoryWiseProduct(int productId)
+        {
+            int categoryId = _productRepository.GetCategoryByProductId(productId);
+
+            if (categoryId != 0 && categoryId != null)
+            {
+                var res = await _productRepository.GetCategoryWiseProduct(categoryId);
+
+                //Mapping
+                List<ProductDetails> products = new List<ProductDetails>();
+                foreach (var item in res) 
+                {
+                    ProductDetails prod = new ProductDetails();
+                    prod.productId = item.productId;
+                    prod.productName =  item.productName;
+                    prod.imageUrl = item.imageUrl;
+                    prod.price = item.retailPrice;
+                    products.Add(prod);
+                }
+
+                //var products = _mapper.Map<IEnumerable<ProductViewModelDTO>>(res);
+                return products;
+            }
+
+            return null;
         }
     }
 }

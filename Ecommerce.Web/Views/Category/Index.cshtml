@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
 }
 
+<p class="btn btn-sm">
+    @Html.ActionLink("Add", "AddCategory", "Category", "", new { @class = "btn btn-sm btn-primary" })
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -33,9 +37,10 @@
                     @Html.DisplayFor(modelItem => item.isActive)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "UpdateCategory", new { id = item.categoryId }) |
-                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.categoryId })
+                    @Html.ActionLink("Edit", "UpdateCategory", new { id = item.categoryId }, new { @class = "btn btn-sm btn-dark" })
+                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.categoryId }, new { @class = "btn btn-sm btn-danger" })
                 </td>
+
             </tr>
         }
     </tbody>

@@ -79,5 +79,34 @@ namespace Ecommerce.Infrastructure.Repositories
 
             return "Successful";
         }
+
+        public Product GetProductDetails(int id)
+        {
+            var product = _dbContext.Products.FirstOrDefault(x => x.productId == id);
+            return product;
+        }
+
+
+
+        public int GetCategoryByProductId(int productId) 
+        {
+            var product = _dbContext.Products.FirstOrDefault(x => x.productId == productId);
+            var subCategory = _dbContext.SubCategories.FirstOrDefault(x => x.subCategoryId == product.subCategoryId);
+            int id = subCategory.categoryId;
+
+            return id;
+        }
+
+        public async Task<List<Product>> GetCategoryWiseProduct(int categoryId)
+        {
+            var products = await (from p in _dbContext.Products
+                                  join sc in _dbContext.SubCategories on p.subCategoryId equals sc.subCategoryId
+                                  where sc.categoryId == categoryId && p.isActive
+                                  select p)
+                          .Take(4)
+                          .ToListAsync();
+
+            return products;
+        }
     }
 }

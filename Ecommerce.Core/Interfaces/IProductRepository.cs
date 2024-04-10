@@ -15,5 +15,11 @@ namespace Ecommerce.Core.Interfaces
         Task<Product> GetProductById(int id);
         Task<string> UpdateProduct(Product model);
         Task<string> DeleteProduct(int id);
+
+
+        Product GetProductDetails(int id);
+        int GetCategoryByProductId(int id);
+        Task<List<Product>> GetCategoryWiseProduct(int categoryId);
+
     }
 }
