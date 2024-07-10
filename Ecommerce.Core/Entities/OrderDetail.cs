@@ -13,11 +13,9 @@ namespace Ecommerce.Core.Entities
         public int orderDetailId { get; set; }
         public int orderId { get; set; }
         public int productId { get; set; }
-        public double retailPrice { get; set; }
         public int quantity { get; set; }
+        public double price { get; set; }
         public string? size { get; set; }
         public double discount { get; set; }
-        public double totalAmount { get; set; }
-        public DateTime orderDate { get; set; }
     }
 }

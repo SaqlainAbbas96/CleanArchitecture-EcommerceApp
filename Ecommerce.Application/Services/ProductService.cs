@@ -22,6 +22,7 @@ namespace Ecommerce.Application.Services
             var products = _mapper.Map<IEnumerable<ProductViewModelDTO>>(res);
             return products;
         }
+        
         public async Task<string> AddProduct(AddProductDTO dto)
         {
             var res = "";
@@ -122,7 +123,6 @@ namespace Ecommerce.Application.Services
             var product = _mapper.Map<UpdateProductDTO>(res);
             return product;
         }
-
 
         public async Task<string> DeleteProduct(int id)
         {

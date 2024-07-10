@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Cart\PlaceOrder.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
  	  <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
@@ -37,6 +41,18 @@
   <ItemGroup>
     <ProjectReference Include="..\Ecommerce.Application\Ecommerce.Application.csproj" />
     <ProjectReference Include="..\Ecommerce.Infrastructure\Ecommerce.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Cart\PlaceOrder.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Cart\PlaceOrder.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Cart\PlaceOrder.cshtml" />
   </ItemGroup>
 
 </Project>

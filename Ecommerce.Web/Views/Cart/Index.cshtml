@@ -1,7 +1,15 @@
 ﻿@using Ecommerce.Application.DTOs
+@using Ecommerce.Application.Extensions
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewBag.Title = "Index";
+}
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    var cartItems = session.GetObjectFromJson<List<CartItemDTO>>("UserCart") ?? new List<CartItemDTO>();
 }
 
 <div class="container">
@@ -24,25 +32,52 @@
                                 <tr>
                                     <th class="border-0" scope="col"> <strong class="text-small text">Cart Id</strong></th>
                                     <th class="border-0" scope="col"> <strong class="text-small text">Product</strong></th>
+                                    <th class="border-0" scope="col"> <strong class="text-small text">Quantity</strong></th>
                                     <th class="border-0" scope="col"> <strong class="text-small text">Price</strong></th>
+                                    <th class="border-0" scope="col"> <strong class="text-small text">Sub Total</strong></th>
                                     <th class="border-0" scope="col"> </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (CartItem sessionItem in (List<CartItem>)ViewBag.userCart)
+                                @foreach (CartItemDTO item in (List<CartItemDTO>)ViewBag.userCart)
                                 {
                                     <tr>
-                                        <td class="align-middle border-0" data-cart-id="@sessionItem.cartId">
-                                            @sessionItem.cartId
+                                        <td class="align-middle border-0" data-cart-id="@item.cartId">
+                                            @item.cartId
                                         </td>
                                         <th class="pl-0 border-0" scope="row">
                                             <div class="media align-items-center">
-                                                <a class="reset-anchor d-block animsition-link" href="#"><img src="@Url.Content(sessionItem.imageUrl)" alt="..." width="70" /></a>
-                                                <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href="#">@sessionItem.productName</a></strong></div>
+                                                <a class="reset-anchor d-block animsition-link" href="#"><img src="@Url.Content(item.imageUrl)" alt="..." width="70" /></a>
+                                                <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href="#">@item.productName</a></strong></div>
                                             </div>
                                         </th>
                                         <td class="align-middle border-0">
-                                            <p class="mb-0 small" id="retailPrice">@sessionItem.retailPrice</p>
+                                            <div class="quantity">
+                                                <a href="@Url.Action("DecreaseQty", "Cart", new { cartId = item.cartId, productId = item.productId, quantity = item.quantity })">
+                                                    -
+                                                </a>
+
+                                                <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="@item.quantity" />
+
+                                                <a href="@Url.Action("IncreaseQty", "Cart", new { cartId = item.cartId, productId = item.productId, quantity = item.quantity, url = "Index" })">
+                                                    +
+                                                </a>
+                                            </div>
+                                        </td>
+
+                                        <td class="align-middle border-0">
+                                            <p class="mb-0 small" id="retailPrice">@item.retailPrice</p>
+                                        </td>
+
+                                        <td class="align-middle border-0">
+                                            <p class="mb-0 small" id="subTotal">@item.subTotal</p>
+                                        </td>
+
+                                        <td>
+                                            <a class="btn btn-outline-dark btn-sm"
+                                               href="@Url.Action("Remove", "Cart", new { cartId = item.cartId, url = "Index" })">
+                                                Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 }
@@ -52,9 +87,97 @@
 
                     <div class="bg-light px-4 py-3">
                         <div class="row align-items-center text-center">
-                            <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm" href="@Url.Action("Index", "Home")"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a></div>
+                            <div class="col-md-6 mb-3 mb-md-0 text-md-left">
+                                <a class="btn btn-outline-dark btn-sm"
+                                   href="@Url.Action("Index", "Home")">
+                                    Continue shopping
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 mb-3 mb-md-0 text-md-right">
+                                <a class="btn btn-outline-dark btn-sm"
+                                   href="@Url.Action("Checkout", "Cart")">
+                                    Procceed to Checkout
+                                </a>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card border-0 rounded-0 p-lg-4 bg-light">
+                        <div class="card-body">
+                            <h5 class="text-uppercase mb-4">Your order</h5>
+                            <ul class="list-unstyled mb-0">
+                                @{
+                                    double deliveryCharges = 50;
+                                    double discount = 0.0;
+                                    double totalAmount = 0.0;
+                                }
+                                @foreach (CartItemDTO item in cartItems)
+                                {
+                                    // Calculate the total price without discount
+                                    double totalPrice = item.retailPrice * item.quantity;
+
+                                    // Calculate the discount amount
+                                    double discountAmount = totalPrice * (item.discount / 100);
+
+                                    if (discountAmount > 0)
+                                    {
+                                        // Apply discount
+                                        double discountedTotal = totalPrice - discountAmount;
+                                        discount += discountAmount;
+                                        totalPrice = discountedTotal;
+                                        totalAmount += totalPrice;
+                                    }
+                                    else
+                                    {
+                                        totalAmount += totalPrice;
+                                    }
+
+                                    <li class="d-flex align-items-center justify-content-between">
+                                        <strong class="small font-weight-bold">
+                                            @item.productName
+                                        </strong>
+                                    </li>
+                                }
+
+                                @foreach (CartItemDTO sessionItem in cartItems)
+                                {
+                                    <li class="align-items-center" style="text-align: right;">
+                                        <span class="text-muted small">
+                                            @sessionItem.subTotal
+                                        </span>
+                                    </li>
+                                }
+                                <li class="d-flex align-items-center justify-content-between">
+                                    <strong class="text-uppercase small font-weight-bold">Total Discount</strong><span class="text-muted small">
+                                        @discount
+                                    </span>
+                                </li>
+                                <li class="d-flex align-items-center justify-content-between">
+                                    <strong class="text-uppercase small font-weight-bold">deliveryCharges</strong><span class="text-muted small">
+                                        @deliveryCharges
+                                    </span>
+                                </li>
+                                <li class="border-bottom my-2"></li>
+                                @{
+                                    // Add delivery charges
+                                    totalAmount = totalAmount + deliveryCharges;
+                                }
+
+                                <li class="d-flex align-items-center justify-content-between">
+                                    <strong class="text-uppercase small font-weight-bold">Total</strong><span>
+                                        @totalAmount
+                                    </span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />                <br />
                 </div>
             }
         </div>

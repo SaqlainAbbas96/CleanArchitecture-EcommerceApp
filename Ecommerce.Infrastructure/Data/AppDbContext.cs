@@ -18,6 +18,13 @@ namespace Ecommerce.Infrastructure.Data
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<PaymentType> PaymentTypes { get; set; }
+        public DbSet<ShippingDetail> ShippingDetails { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }    
+        public DbSet<Customer> Customers { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {

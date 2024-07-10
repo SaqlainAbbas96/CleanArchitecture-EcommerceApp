@@ -11,23 +11,22 @@ namespace Ecommerce.Core.Entities
     {
         [Key]
         public int orderId { get; set; }
-        public int customerId { get; set; }
+        public int userId { get; set; }
         public int paymentId { get; set; }
         public int shippingId { get; set; }
-        public double discount { get; set; }
-        public double shipping { get; set; }
         public double subTotal { get; set; }
+        public double deliveryCharges { get; set; }
+        public double discount { get; set; }
         public double totalAmount { get; set; }
-        public bool isCompleted { get; set; }
         public DateTime orderDate { get; set; }
-        public bool dispatched { get; set; }
+        public bool isCompleted { get; set; }
+        public bool dispatched { get; set; } = false;
         public DateTime dispatchedDate { get; set; }
-        public bool shipped { get; set; }
+        public bool shipped { get; set; } = false;
         public DateTime shippingDate { get; set; }
-        public bool deliver { get; set; }
+        public bool deliver { get; set; } = false;
         public DateTime deliverDate { get; set; }
         public string? notes { get; set; }
-        public bool cancelOrder { get; set; }
-        public double deliveryCharges { get; set; }
+        public bool cancelOrder { get; set; } = false;
     }
 }
