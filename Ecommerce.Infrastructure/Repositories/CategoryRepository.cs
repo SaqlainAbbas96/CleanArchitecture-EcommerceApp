@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Core.Entities;
 using Ecommerce.Core.Interfaces;
 using Ecommerce.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Ecommerce.Infrastructure.Repositories
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
-            return _dbContext.Categories.ToList();
+            return _dbContext.Categories.AsNoTracking().ToList();
         }
 
         public async Task<string> AddCategory(Category model)

@@ -482,3 +482,24 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Ignore the obj folder in the Ecommerce.Web project
+Ecommerce.Web/obj/
+
+# Ignore the obj folder in the Ecommerce.Infrastructure project
+Ecommerce.Infrastructure/obj/
+
+# Ignore the obj folder in the Ecommerce.Core project
+Ecommerce.Core/obj/
+
+# Ignore the bin folder in the Ecommerce.Core project
+Ecommerce.Core/bin/
+
+# Ignore the obj folder in the Ecommerce.Application project
+Ecommerce.Application/obj
+
+# Ignore the bin folder in the Ecommerce.Application project
+Ecommerce.Application/bin
+
+.vs/EcommerceApp
+.vs/ProjectEvaluation
